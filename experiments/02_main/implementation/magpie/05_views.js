@@ -1,0 +1,119 @@
+// In this file you can instantiate your views
+// We here first instantiate wrapping views, then the trial views
+
+
+/** Wrapping views below
+
+*Optional properties
+    * buttonText: string - the text on the button (default: 'next')
+    * text: string - the text to be displayed in this view
+    * title: string - the title of this view
+
+    * More about the properties and functions of the wrapping views - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/01_template_views/#wrapping-views
+
+*//* ${coin} */
+
+// Every experiment should start with an intro view. Here you can welcome your participants and tell them what the experiment is about
+const intro = magpieViews.view_generator("intro", {
+  trials: 1,
+  name: 'intro',
+  // If you use JavaScripts Template String `I am a Template String`, you can use HTML <></> and javascript ${} inside
+  text: `In the following you will see a series of images of alien workers and boxes. There will be questions about them.
+            <br />
+            <br />
+            Please try to stay focused for the next two minutes. Thank you for participating!`,
+  buttonText: 'Start experiment'
+});
+
+var pic = 0;
+
+if (scenario == "move"){
+  pic = "Pip_dolly.png";
+} else {
+  pic = "Pip_nodolly.png";
+};
+
+const instructions1 = magpieViews.view_generator("instructions", {
+  trials: 1,
+  name: 'instructions',
+  title: 'General Instructions',
+  text: `<img src="images/` + pic + `"><br /><br />
+  Pip the alien works in a factory. His job is to ${scenario} shipments of boxes. He gets these boxes from a dispenser in the ceiling.
+            <br />
+            <br />
+            `,
+  buttonText: 'Next'
+});
+
+var todo = 0;
+if (scenario == "move"){
+  todo = "moved";
+} else {
+  todo = "inspected";
+}
+
+const talk = magpieViews.view_generator("instructions", {
+  trials: 1,
+  name: 'instructions',
+  title: 'General Instructions',
+  text: `<img src="images/Pipnjim.png" alt="Pip and Jim"> <br /><br />
+        After having ${todo} the boxes, Pip tells his friend Jim about them.
+            <br />
+            Your task is to help Jim decide which boxes Pip was refering to.`,
+  buttonText: 'Go to trials'
+});
+
+
+// In the post test questionnaire you can ask your participants addtional questions
+const post_test = magpieViews.view_generator("post_test", {
+  trials: 1,
+  name: 'post_test',
+  title: 'Additional information',
+  text: 'Answering the following questions is optional, but your answers will help us analyze our results.',
+  buttonText: "Send"
+
+  // You can change much of what appears here, e.g., to present it in a different language, as follows:
+  // buttonText: 'Weiter',
+  // age_question: 'Alter',
+  // gender_question: 'Geschlecht',
+  // gender_male: 'männlich',
+  // gender_female: 'weiblich',
+  // gender_other: 'divers',
+  // edu_question: 'Höchster Bildungsabschluss',
+  // edu_graduated_high_school: 'Abitur',
+  // edu_graduated_college: 'Hochschulabschluss',
+  // edu_higher_degree: 'Universitärer Abschluss',
+  // languages_question: 'Muttersprache',
+  // languages_more: '(in der Regel die Sprache, die Sie als Kind zu Hause gesprochen haben)',
+  // comments_question: 'Weitere Kommentare'
+});
+
+// The 'thanks' view is crucial; never delete it; it submits the results!
+const thanks = magpieViews.view_generator("thanks", {
+  trials: 1,
+  name: 'thanks',
+  title: 'Thank you for taking part in this experiment!',
+  prolificConfirmText: 'Press the button'
+});
+
+/*
+
+* Optional properties
+
+    - pause: number (in ms) - blank screen before the fixation point or stimulus show
+    - fix_duration: number (in ms) - blank screen with fixation point in the middle
+    - stim_duration: number (in ms) - for how long to have the stimulus on the screen
+      More about trial life cycle - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
+
+    - hook: object - option to hook and add custom functions to the view
+      More about hooks - https://magpie-ea.github.io/magpie-docs/01_designing_experiments/04_lifecycles_hooks/
+*/
+
+// Here, we initialize a normal forced_choice view
+const image_selection_pip = magpieViews.view_generator("image_selection", {
+  // This will use all trials specified in `data`, you can user a smaller value (for testing), but not a larger value
+  trials: trial_info.image_selection.length,
+  // name should be identical to the variable name
+  name: 'image_selection_pip',
+  data: _.shuffle(trial_info.image_selection)
+});
