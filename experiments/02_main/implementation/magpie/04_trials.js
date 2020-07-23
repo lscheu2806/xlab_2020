@@ -2,66 +2,74 @@
 
 
 const trial_info = {
-    QUD: "This is what Pip told Jim:",
     image_selection: [
         {
-            question: "\"The boxes were big.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes were big.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',
             option2: 'distributive'
         },
         {
-            question: "\"The boxes were heavy.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes were heavy.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/twoBigblue_300.jpg",
             picture2: "images/fiveSmallred_300.jpg",
             option1: 'distributive',
             option2: 'collective'
         },
         {
-            question: "\"The boxes were tall.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes were tall.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',
             option2: 'distributive'
         },
         {
-            question: "\"The boxes each were big.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes each were big.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',
             option2: 'distributive'
         },
         {
-            question: "\"The boxes each were heavy.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes each were heavy.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/twoBigblue_300.jpg",
             picture2: "images/fiveSmallred_300.jpg",
             option1: 'distributive',
             option2: 'collective'
         },
         {
-            question: "\"The boxes each were tall.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes each were tall.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',
             option2: 'distributive'
         },
         {
-            question: "\"The boxes together were big.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes together were big.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',
             option2: 'distributive'
         },
         {
-            question: "\"The boxes together were heavy.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes together were heavy.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/twoBigblue_300.jpg",
             picture2: "images/fiveSmallred_300.jpg",
             option1: 'distributive',
             option2: 'collective'
         },
         {
-            question: "\"The boxes together were tall.\"",
+            QUD: "This is what Pip tells Jim:<br />\"The boxes together were tall.\"",
+            question: "Which boxes is Pip talking about?",
             picture1: "images/fiveSmallred_300.jpg",
             picture2: "images/twoBigblue_300.jpg",
             option1: 'collective',

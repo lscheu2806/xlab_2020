@@ -18,11 +18,10 @@ const intro = magpieViews.view_generator("intro", {
   trials: 1,
   name: 'intro',
   // If you use JavaScripts Template String `I am a Template String`, you can use HTML <></> and javascript ${} inside
-  text: `In the following you will see a series of images of alien workers and boxes. There will be questions about them.
+  text: `Thank you for taking part in our experiment! Please press the button below to receive your instructions.
             <br />
-            <br />
-            Please try to stay focused for the next two minutes. Thank you for participating!`,
-  buttonText: 'Start experiment'
+            <br />`,
+  buttonText: 'Continue'
 });
 
 var pic = 0;
@@ -38,11 +37,11 @@ const instructions1 = magpieViews.view_generator("instructions", {
   name: 'instructions',
   title: 'General Instructions',
   text: `<img src="images/` + pic + `"><br /><br />
-  Pip the alien works in a factory. His job is to ${scenario} shipments of boxes. He gets these boxes from a dispenser in the ceiling.
+  This is Pip. Pip's job is to ${scenario} boxes. Pip receives the boxes from a dispenser in the ceiling.
             <br />
             <br />
             `,
-  buttonText: 'Next'
+  buttonText: 'Continue'
 });
 
 var todo = 0;
@@ -52,15 +51,15 @@ if (scenario == "move"){
   todo = "inspected";
 }
 
-const talk = magpieViews.view_generator("instructions", {
+const instructions2 = magpieViews.view_generator("instructions", {
   trials: 1,
   name: 'instructions',
   title: 'General Instructions',
   text: `<img src="images/Pipnjim.png" alt="Pip and Jim"> <br /><br />
-        After having ${todo} the boxes, Pip tells his friend Jim about them.
+        After having ${todo} a shipment of boxes, Pip tells his friend Jim about them.
             <br />
-            Your task is to help Jim decide which boxes Pip was refering to.`,
-  buttonText: 'Go to trials'
+            Your task is to help Jim understand which boxes Pip is talking about. You can choose the correct boxes by clicking on them. Press the button below to begin.`,
+  buttonText: 'Begin'
 });
 
 
@@ -92,8 +91,8 @@ const post_test = magpieViews.view_generator("post_test", {
 const thanks = magpieViews.view_generator("thanks", {
   trials: 1,
   name: 'thanks',
-  title: 'Thank you for taking part in this experiment!',
-  prolificConfirmText: 'Press the button'
+  title: 'Thank you once again for participating! Please press the button below to conclude the experiment.',
+  prolificConfirmText: 'Finish'
 });
 
 /*

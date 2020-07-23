@@ -17,7 +17,7 @@ $("document").ready(function() {
           views_seq: [
             intro,
             instructions1,
-            talk,
+            instructions2,
             image_selection_pip,
             post_test,
             thanks
