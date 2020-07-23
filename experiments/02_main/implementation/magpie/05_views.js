@@ -58,6 +58,7 @@ const instructions2 = magpieViews.view_generator("instructions", {
   text: `<img src="images/Pipnjim.png" alt="Pip and Jim"> <br /><br />
         After having ${todo} a shipment of boxes, Pip tells his friend Jim about them.
             <br />
+            <br />
             Your task is to help Jim understand which boxes Pip is talking about. You can choose the correct boxes by clicking on them. Press the button below to begin.`,
   buttonText: 'Begin'
 });
