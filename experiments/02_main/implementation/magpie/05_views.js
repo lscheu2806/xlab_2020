@@ -18,7 +18,8 @@ const intro = magpieViews.view_generator("intro", {
   trials: 1,
   name: 'intro',
   // If you use JavaScripts Template String `I am a Template String`, you can use HTML <></> and javascript ${} inside
-  text: `Thank you for taking part in our experiment! Please press the button below to receive your instructions.
+  text: `Thank you for taking part in our experiment! If there are any issues, please contact us via <a href="mailto:frscharf@uos.de">frscharf@uos.de</a>. <br /><br />
+        Press the button below to start the experiment.
             <br />
             <br />`,
   buttonText: 'Continue'
@@ -37,7 +38,8 @@ const instructions1 = magpieViews.view_generator("instructions", {
   name: 'instructions',
   title: 'General Instructions',
   text: `<img src="images/` + pic + `"><br /><br />
-  This is Pip. Pip's job is to ${scenario} boxes. Pip receives the boxes from a dispenser in the ceiling.
+  <i>Read the instructions carefully and try to stay focused for the next two minutes.</i><br />
+  This is Pip. Pip's job is to ${scenario} boxes. He receives the boxes from a dispenser in the ceiling.
             <br />
             <br />
             `,
@@ -59,7 +61,7 @@ const instructions2 = magpieViews.view_generator("instructions", {
         After having ${todo} a shipment of boxes, Pip tells his friend Jim about them.
             <br />
             <br />
-            Your task is to help Jim understand which boxes Pip is talking about. You can choose the correct boxes by clicking on them. Press the button below to begin.`,
+            Your task is to help Jim understand which boxes Pip is talking about by clicking on one of the two appearing stack. Press the button below to begin.`,
   buttonText: 'Begin'
 });
 
