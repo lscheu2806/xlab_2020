@@ -94,7 +94,7 @@ const post_test = magpieViews.view_generator("post_test", {
 const thanks = magpieViews.view_generator("thanks", {
   trials: 1,
   name: 'thanks',
-  title: 'Thank you once again for participating! Please press the button below to conclude the experiment.',
+  title: 'Thank you once again for participating! You have finished the trials and may now close this window.',
   prolificConfirmText: 'Finish'
 });
 
