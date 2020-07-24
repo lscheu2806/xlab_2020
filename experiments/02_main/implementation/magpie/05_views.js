@@ -72,7 +72,10 @@ const post_test = magpieViews.view_generator("post_test", {
   name: 'post_test',
   title: 'Additional information',
   text: 'Answering the following questions is optional, but your answers will help us analyze our results.',
-  buttonText: "Send"
+  buttonText: "Send",
+  edu_graduated_high_school: 'Highschool graduate (Abitur, diploma or equivalent)',
+  edu_graduated_college: 'University degree (Bachelor)',
+  edu_higher_degree: 'Higher degree'
 
   // You can change much of what appears here, e.g., to present it in a different language, as follows:
   // buttonText: 'Weiter',
