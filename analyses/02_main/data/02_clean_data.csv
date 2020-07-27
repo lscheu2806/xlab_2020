@@ -71,7 +71,6 @@ submission_id,trial_number,scenario,predicate,sentence_frame,RT,response
 1880,7,inspect,big,bare,2535,distributive
 1880,8,inspect,heavy,together,2145,collective
 1880,9,inspect,tall,each,2414,distributive
-1878,1,move,heavy,bare,61552,distributive
 1878,2,move,tall,bare,7612,distributive
 1878,3,move,tall,together,2702,collective
 1878,4,move,big,each,3076,distributive
@@ -973,7 +972,6 @@ submission_id,trial_number,scenario,predicate,sentence_frame,RT,response
 1745,1,move,big,bare,28467,distributive
 1745,2,move,tall,bare,14553,distributive
 1745,3,move,heavy,bare,8033,distributive
-1745,4,move,big,each,625652,distributive
 1745,5,move,tall,together,3353,collective
 1745,6,move,big,together,9317,collective
 1745,7,move,heavy,each,3926,distributive
@@ -1224,7 +1222,6 @@ submission_id,trial_number,scenario,predicate,sentence_frame,RT,response
 1698,9,inspect,tall,each,2362,distributive
 1697,1,move,big,each,6252,distributive
 1697,2,move,heavy,together,30259,distributive
-1697,3,move,big,together,62328,collective
 1697,4,move,tall,together,3589,collective
 1697,5,move,heavy,each,8068,distributive
 1697,6,move,tall,bare,3142,distributive
