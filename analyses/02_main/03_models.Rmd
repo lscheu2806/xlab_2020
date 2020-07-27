@@ -1,0 +1,65 @@
+---
+title: "03_summary"
+author: "Group 6"
+date: "7/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r libs}
+library(tidyverse)
+library(lme4)
+library(lmerTest)
+```
+
+```{r loaddata}
+data <- read_csv("data/02_clean_data.csv")
+```
+
+To evaluate disambiguation potentials of our `sentence_frame`, we exclude the bare `sentence_frame` and fit the following model
+$$\text{response ~ sentence_frame * predicate + (1 | submission_id) + (1 | scenario)}$$
+Justification for the random effects: 
+```{r}
+xtabs( ~ data$scenario + data$submission_id) #between subject design warrants random intercepts for subject_id and scenario
+data
+```
+
+
+
+```{r model1}
+data_model1 <- data %>% 
+  filter(sentence_frame != "bare") %>% 
+  mutate(
+    response = ifelse(response == "collective", 0, 1)
+  )
+model1 <- lmer(
+  formula =  response ~ sentence_frame * predicate + trial_number + (1| submission_id) + (1|scenario),
+  data = data_model1
+)
+summary(model1)
+
+```
+Evaluating the behavior of the predicate in absence of the disambiguation frames, i.e. in the bare sentence frame.
+```{r}
+data_model2 <- data %>% 
+  filter(sentence_frame == "bare") %>% 
+  mutate(
+    response = ifelse(response == "collective", 0, 1)
+  )
+model2 <- lmer(
+  formula =  response ~ scenario + predicate +trial_number + ( 1+trial_number | submission_id),
+  data = data_model2
+)
+summary(model2)
+
+
+
+
+```
+
+
+
