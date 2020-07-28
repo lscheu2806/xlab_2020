@@ -1,2 +1,2 @@
-
-
+#Data pilot
+Here you will find all the collected data of the pilot study. This included *submission_id*,*trial_number*,*scenario*,*predicate*,*sentence_frame*,*RT* and *response*. In [raw data](/01_raw_data.csv) the unprocessed data is listed. In [clean data](/02_clean_data.csv) is the already processed and cleaned version. 
