@@ -10,7 +10,7 @@ In the following figures we plotted the correspond of the sentence frames *each*
 
 ![Plot predicates](/analyses/02_main/plots/ResponsePredicateSentenceEachTogether.png)
 
-![Plot scenarios](/analyses/02_main/plots/ResponseScenariosSentenceFrameBare.png)
+![Plot scenarios](/analyses/02_main/plots/ResponseScenarioSentenceFrameBare.png)
 
 
 ### Exploratory plots
