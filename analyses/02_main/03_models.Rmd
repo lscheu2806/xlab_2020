@@ -21,9 +21,9 @@ data <- read_csv("data/02_clean_data.csv")
 ```
 
 To evaluate disambiguation potentials of our `sentence_frame`, we exclude the bare `sentence_frame` and fit the following model
-$$\text{response ~ sentence_frame * predicate + (1 | submission_id) + (1 | scenario)}$$
+$$\text{response ~ sentence_frame * predicate + trial_number + (1 | submission_id) + (1 | scenario)}$$
 Justification for the random effects: 
-```{r}
+```{r resutls=hide}
 xtabs( ~ data$scenario + data$submission_id) #between subject design warrants random intercepts for subject_id and scenario
 data
 ```
@@ -34,30 +34,95 @@ data
 data_model1 <- data %>% 
   filter(sentence_frame != "bare") %>% 
   mutate(
-    response = ifelse(response == "collective", 0, 1)
+    response = ifelse(response == "collective", 1, 0)
   )
 model1 <- lmer(
   formula =  response ~ sentence_frame * predicate + trial_number + (1| submission_id) + (1|scenario),
   data = data_model1
 )
 summary(model1)
-
+t_m1 = as.vector(fixef(model1))
+results_m1 <- tibble(
+  each_big = t_m1[1] + t_m1[5],
+  each_heavy = t_m1[1] + t_m1[5] + t_m1[3],
+  each_tall = t_m1[1] + t_m1[5] + t_m1[4],
+  together_big = t_m1[1] + t_m1[5] + t_m1[2],
+  together_heavy = t_m1[1] + t_m1[5] + t_m1[2] + t_m1[3] + t_m1[6],
+  together_tall = t_m1[1] + t_m1[5] + t_m1[2] + t_m1[4] + t_m1[7]
+) %>% 
+  pivot_longer(everything(), names_to = "parameters", values_to = "P_collective") %>% 
+  mutate(
+    sentence_frame = ifelse(parameters %in% c("each_big", "each_tall", "each_heavy"),"each","together"),
+    predicate = ifelse(parameters %in% c("each_big", "together_big"),"big", ifelse(parameters %in% c("each_tall", "together_tall"),"tall","heavy"))
+  ) %>% 
+  select(sentence_frame,predicate, P_collective) %>% 
+  mutate(
+    P_distributive = 1 - P_collective
+  )
+results_m1
+results_m1 %>% 
+  ggplot(aes(x = sentence_frame, y = P_collective, fill = sentence_frame))+
+  geom_col()+
+  geom_text(aes(label = round(P_collective,3)), vjust=-0.5, color = "black", position = position_dodge(0.85), size = 4)+
+  facet_wrap(~predicate)+
+  scale_fill_manual(values=c("mediumspringgreen","mediumorchid2"))+
+  theme(legend.position = "none")+
+  ylim(0,1)+
+  labs(
+    title = "Collective assignment by sentence_frame * predicate and trial number",
+    x = "Sentence Frame (excluding bare)",
+    y = "collective choice rate"
+  )
 ```
+
 Evaluating the behavior of the predicate in absence of the disambiguation frames, i.e. in the bare sentence frame.
+$$\text{response ~ scenario + predicate + trial_number + (1+trial_number | submission_id)}$$
+```{r}
+summary(model2)
+```
+
 ```{r}
 data_model2 <- data %>% 
   filter(sentence_frame == "bare") %>% 
   mutate(
-    response = ifelse(response == "collective", 0, 1)
+    response = ifelse(response == "collective", 1, 0)
   )
 model2 <- lmer(
   formula =  response ~ scenario + predicate +trial_number + ( 1+trial_number | submission_id),
   data = data_model2
 )
 summary(model2)
+t_m2 = as.vector(fixef(model2))
+results_m2 <- tibble(
+  inspect_big = t_m2[1] + t_m2[5],
+  inspect_heavy = t_m2[1] + t_m2[5] + t_m2[3],
+  inspect_tall =  t_m2[1] + t_m2[5] + t_m2[4],
+  move_big = t_m2[1] + t_m2[5] + t_m2[2],
+  move_heavy = t_m2[1] + t_m2[5] + t_m2[2] + t_m2[3],
+  move_tall= t_m2[1] + t_m2[5] + t_m2[2]+ t_m2[4]
+) %>%  pivot_longer(everything(), names_to = "parameters", values_to = "P_collective") %>% 
+  mutate(
+    scenario = ifelse(parameters %in% c("inspect_big", "inspect_tall", "inspect_heavy"),"inspect","move"),
+    predicate = ifelse(parameters %in% c("inspect_big", "move_big"),"big", ifelse(parameters %in% c("inspect_tall", "move_tall"),"tall","heavy"))
+  ) %>% 
+  select(scenario,predicate, P_collective) %>% 
+  mutate(
+    P_distributive = 1 - P_collective
+  )
 
-
-
+results_m2 
+results_m2 %>% 
+  ggplot(aes(x = "bare", y = P_collective, fill = scenario))+
+  geom_col(position = position_dodge(width = 0.85))+
+  geom_text(aes(label = round(P_collective,3)), vjust=-0.5, color = "black", position = position_dodge(0.85), size = 4)+
+  facet_wrap(~predicate)+
+  ylim(0,1)+
+  labs(
+    title = "Effect of scenario on response in the bare sentence frame",
+    subtitle = "Facetted by predicate",
+    y = "collective choice rate",
+    x = "sentence frame (excluding together/each)"
+  )
 
 ```
 
