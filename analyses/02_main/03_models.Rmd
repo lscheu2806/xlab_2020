@@ -65,7 +65,6 @@ results_m1 %>%
   geom_col()+
   geom_text(aes(label = round(P_collective,3)), vjust=-0.5, color = "black", position = position_dodge(0.85), size = 4)+
   facet_wrap(~predicate)+
-  scale_fill_manual(values=c("mediumspringgreen","mediumorchid2"))+
   theme(legend.position = "none")+
   ylim(0,1)+
   labs(
