@@ -10,10 +10,10 @@ This repository consists of all important documents, implementations, figures an
 We collected our analyses of the pilot and main study in here. You will find the implementations in R as well as the figures and tables with the analysis of the collected data.
 
 ### Data
-The raw and cleaned data is located in the data folder. The raw data includes all data we collected. To analyse the data we cleaned the information. The important variables are *submission_id*,*trial_number*,*scenario*,*predicate*,*sentence_frame*,*RT* and *response*.
+The raw and cleaned data is located in the data folder. The raw data includes all data we collected. The clean data was obtained from the raw data by wrangling it using the scripts found in *analyses*. The important variables are *submission_id*,*trial_number*,*scenario*,*predicate*,*sentence_frame*,*RT* and *response*.
 
 ### Experiments
-This folder consists of the magpie implementation for the pilot and the main study.
+This folder contains the magpie implementations for the experiments conducted for the pilot and the main study.
 
 ### Literature
 Background as well as the original paper(s) can be found in here.
