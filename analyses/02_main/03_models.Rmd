@@ -71,7 +71,7 @@ results_m1 %>%
   labs(
     title = "Collective assignment by sentence_frame * predicate and trial number",
     x = "Sentence Frame (excluding bare)",
-    y = "collective choice rate"
+    y = "Ratio of collective response"
   )
 ```
 
@@ -87,10 +87,12 @@ data_model2 <- data %>%
   mutate(
     response = ifelse(response == "collective", 1, 0)
   )
+
 model2 <- lmer(
   formula =  response ~ scenario + predicate +trial_number + ( 1+trial_number | submission_id),
   data = data_model2
 )
+
 summary(model2)
 t_m2 = as.vector(fixef(model2))
 results_m2 <- tibble(
@@ -120,11 +122,43 @@ results_m2 %>%
   labs(
     title = "Effect of scenario on response in the bare sentence frame",
     subtitle = "Facetted by predicate",
-    y = "collective choice rate",
+    y = "Ratio of collective response",
     x = "sentence frame (excluding together/each)"
   )
 
 ```
 
+## Exploratory Analyses
+
+Let's explore Reaction Time effects:
+```{r}
+data_m <- data %>%
+  select(predicate,RT,sentence_frame) %>% 
+  group_by(predicate,sentence_frame) %>% 
+  summarise(
+    m_RT = mean(RT)
+  )
+
+data %>% 
+  ggplot(aes(x = RT, y = sentence_frame, color = predicate))+
+  geom_point(aes(shape = predicate), position = position_dodge(0.8))+
+  geom_point(data = data_m, mapping = aes(x = m_RT, shape = predicate),position = position_dodge(0.8), size = 5)+
+  facet_wrap(~scenario)
+```
+
+```{r}
+data_raw = read_csv("data/01_raw_data.csv")
+data_o <- data_raw %>% distinct(submission_id, .keep_all = T) %>%
+select(age,comments, education, languages) 
+data_o %>% 
+  ggplot(aes(x = age))+ 
+  geom_density()
+data_o %>% na.omit(education) %>% 
+  ggplot(aes(x = education, fill = education))+ 
+  geom_bar()
+data_o %>% na.omit(languages) %>% 
+  ggplot(aes(x = tolower(languages), fill = tolower(languages)))+
+  geom_bar()
+```
 
 
