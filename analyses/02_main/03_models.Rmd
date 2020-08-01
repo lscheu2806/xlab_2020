@@ -150,22 +150,31 @@ data_raw = read_csv("data/01_raw_data.csv")
 data_o <- data_raw %>% distinct(submission_id, .keep_all = T) %>%
 select(age,comments, education, languages) 
 
-data_o %>% na.omit(age) %>% 
-  ggplot(aes(x = age))+ 
-  geom_density()+
-  geom_vline(aes(xintercept = mean(age)))+
+data_o %>% 
+  na.omit(age) %>%
+  mutate(
+    age = ifelse(age  < 22, "18-21",ifelse(age < 30, "22-29", ifelse(age < 40, "30-39", ifelse(age < 50, "40-49", ifelse(age < 60, "50-59", "60+")))))
+  ) %>% 
+  ggplot(aes(x = age, fill = age))+ 
+  geom_bar()+
   labs(
     y = "Count",
-    title = "Age of participants (line is mean)")
+    fill = "Age bracket"
+  )
 data_o %>% na.omit(education) %>% 
   ggplot(aes(x = education, fill = education))+ 
   geom_bar()+
+  labs(fill = "Education level")+
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 data_o %>% na.omit(languages) %>% 
   ggplot(aes(x = tolower(languages), fill = tolower(languages)))+
   geom_bar()+
+  labs(
+    fill = "Languages"
+  )+
+  
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
