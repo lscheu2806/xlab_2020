@@ -1,7 +1,7 @@
 # Replication study "validating the paraphrase methodology" by Scontras and Goodman
 ## The study
 Our replication study is meant to validate the findings of the experiment "Resolving uncertainty in plural predication" by Gregory Scontras and Noah D. Goodman. To approve our experiment and check if the implementation and analysis works in the expected way, we started a pilot study with 3-5 participants. The data collection for the pilot was possible from Thursday, Jul 23 2020 10pm GMT+02:00 until Friday, Jul 24 2020 2.30pm. 4 people participated.  
-The main study started on Friday, Jul 24 2020 6pm and ended on Monday, Jul 27 2020 6pm. 147 people participated.
+The main study started on Friday, Jul 24 2020 6pm and ended on Monday, Jul 27 2020 6pm. 149 people participated.
 
 ## The folder structure
 This repository consists of all important documents, implementations, figures and pictures which are included in our replication.
