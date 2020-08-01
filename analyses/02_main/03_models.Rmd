@@ -65,7 +65,6 @@ results_m1 %>%
   geom_col()+
   geom_text(aes(label = round(P_collective,3)), vjust=-0.5, color = "black", position = position_dodge(0.85), size = 4)+
   facet_wrap(~predicate)+
-  scale_fill_manual(values=c("mediumspringgreen","mediumorchid2"))+
   theme(legend.position = "none")+
   ylim(0,1)+
   labs(
@@ -150,15 +149,35 @@ data %>%
 data_raw = read_csv("data/01_raw_data.csv")
 data_o <- data_raw %>% distinct(submission_id, .keep_all = T) %>%
 select(age,comments, education, languages) 
+
 data_o %>% 
-  ggplot(aes(x = age))+ 
-  geom_density()
+  na.omit(age) %>%
+  mutate(
+    age = ifelse(age  < 22, "18-21",ifelse(age < 30, "22-29", ifelse(age < 40, "30-39", ifelse(age < 50, "40-49", ifelse(age < 60, "50-59", "60+")))))
+  ) %>% 
+  ggplot(aes(x = age, fill = age))+ 
+  geom_bar()+
+  labs(
+    y = "Count",
+    fill = "Age bracket"
+  )
 data_o %>% na.omit(education) %>% 
   ggplot(aes(x = education, fill = education))+ 
-  geom_bar()
+  geom_bar()+
+  labs(fill = "Education level")+
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 data_o %>% na.omit(languages) %>% 
   ggplot(aes(x = tolower(languages), fill = tolower(languages)))+
-  geom_bar()
+  geom_bar()+
+  labs(
+    fill = "Languages"
+  )+
+  
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
 ```
 
 
